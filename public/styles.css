@@ -1,0 +1,45 @@
+h1 {
+    text-align: center;
+    color: #f90fbe;
+    margin: 25px;
+    padding: 10px;
+}
+
+h3 {
+    color: #f90fbe;
+}
+
+ul {
+    list-style-type: none;
+
+    margin: 50px 0;
+}
+
+li {
+    margin-left: -40px;
+    margin-top: 18px;
+    padding: 18px;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+
+.close-btn {
+    border: 2px solid black;
+    border-radius: 100%;
+    width: 35px;
+    height: 35px;
+    margin-right: 18px;
+    float: left;
+    text-align: center;
+    transition: all 1.2s;
+}
+
+.close-btn:hover {
+    background-color: #ca2424;
+    cursor: pointer;
+}
+
+button[type='submit'] {
+    width: 10%;
+    
+}
