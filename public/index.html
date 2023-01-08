@@ -14,55 +14,42 @@
         module.controller("EntryCtrl", ['$scope', function ($scope) {
             $scope.options = [
                 {
-                    name: "Products", 
-                    value: "Products"
+                    id: 1,
+                    name: 'Products'
                 },
                 {
-                    name: "Goods4Home", 
-                    value: "Goods4Home"
+                    id: 2,
+                    name: "Goods4Home"
                 },
                 {
-                    name: "Lunch", 
-                    value: "Lunch"
+                    id: 3,
+                    name: "Lunch"
                 },
                 {
-                    name: "Home", 
-                    value: "Home"
-                }
-
-            ];
-
-            $scope.entries = [
-                {
-                    category: "Lunch",
-                    price: 205,
-                    details: "Burger",
-                    date: new Date("02/11/2022")
-                },
-                {
-                    category: "Home",
-                    price: 770,
-                    details: "Gas, Water",
-                    date: new Date("11/27/2022")
-                },
-                {
-                    category: "Products",
-                    price: 58,
-                    details: "Biscuits",
-                    date: new Date("12/01/2022")
+                    id: 4,
+                    name: "Home"
                 }
             ];
+
+            $scope.entries = [];
+
+            for (let i = 0; i < localStorage.length; i++) {
+                const key = localStorage.key(i);
+                const value = JSON.parse(localStorage.getItem(key));
+
+                $scope.entries.push(value);
+            }
 
             $scope.addEntry = function () {
                 $scope.entries.push({
-                    category: $scope.entry.category,
+                    category: $scope.entry.category.name,
                     price: $scope.entry.price,
                     details: $scope.entry.details,
                     date: $scope.entry.date
                 });
 
                 localStorage.setItem($scope.entries.length, JSON.stringify({
-                    category: $scope.entry.category,
+                    category: $scope.entry.category.name,
                     price: $scope.entry.price,
                     details: $scope.entry.details,
                     date: $scope.entry.date
@@ -76,7 +63,7 @@
         }]);
     </script>
 </head>
-<body ng-controller="EntryCtrl">
+<body ng-controller="EntryCtrl" ng-cloak>
     <div class="container">
         <div class="page-header">
             <h1>Finances Total Count: {{entries.length}}</h1>
@@ -99,7 +86,7 @@
                 <div class="form-group row">
                   <label for="category" class="col-sm-1 control-label">Category</label>
                   <select name="category" id="category" class="col-sm-10 form-control" autocomplete="off" ng-model="entry.category"
-                          ng-options="option.name for option in options track by option.value">
+                          ng-options="option.name for option in options track by option.id">
                   </select>
                 </div>
     
